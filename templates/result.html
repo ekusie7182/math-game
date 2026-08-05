@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>暗算ゲーム｜結果</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+    <main class="container result-container">
+        <div class="result-icon">
+            {% if score == total_questions %}
+                🏆
+            {% elif score >= 7 %}
+                🎉
+            {% elif score >= 4 %}
+                👍
+            {% else %}
+                💪
+            {% endif %}
+        </div>
+
+        <h1>結果発表</h1>
+
+        <div class="result-score">
+            {{ total_questions }}問中
+            <strong>{{ score }}問</strong>正解！
+        </div>
+
+        <div class="result-rate">
+            正答率：{{ correct_rate }}％
+        </div>
+
+        <div class="score-stars">
+            {% for number in range(total_questions) %}
+                {% if number < score %}
+                    ★
+                {% else %}
+                    ☆
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {% if score == total_questions %}
+            <div class="result-comment excellent">
+                全問正解です！暗算マスター！
+            </div>
+        {% elif score >= 7 %}
+            <div class="result-comment good">
+                よくできました！高得点です！
+            </div>
+        {% elif score >= 4 %}
+            <div class="result-comment average">
+                もう少しです。再挑戦してみましょう！
+            </div>
+        {% else %}
+            <div class="result-comment retry">
+                難しい問題もありました。練習して再挑戦しよう！
+            </div>
+        {% endif %}
+
+        <form
+            method="post"
+            action="{{ url_for('start') }}"
+        >
+            <button type="submit" class="main-button">
+                もう一度遊ぶ
+            </button>
+        </form>
+
+        <form
+            method="post"
+            action="{{ url_for('back_to_title') }}"
+        >
+            <button type="submit" class="sub-button">
+                タイトルへ戻る
+            </button>
+        </form>
+    </main>
+</body>
+</html>

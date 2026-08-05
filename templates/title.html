@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>暗算ゲーム</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+    <main class="container title-container">
+        <div class="game-icon">🧠</div>
+
+        <h1>暗算ゲーム</h1>
+
+        <p class="subtitle">
+            簡単な足し算から難しい掛け算まで挑戦しよう！
+        </p>
+
+        <section class="description-box">
+            <h2>ゲームのルール</h2>
+
+            <ul>
+                <li>問題は全部で10問です。</li>
+                <li>問題の種類と難易度はランダムです。</li>
+                <li>電卓を使わずに暗算で挑戦しましょう。</li>
+            </ul>
+        </section>
+
+        <div class="problem-examples">
+            <span>3 ＋ 6</span>
+            <span>8 × 7</span>
+            <span>24 × 13</span>
+        </div>
+
+        <form method="post" action="{{ url_for('start') }}">
+            <button type="submit" class="main-button">
+                ゲーム開始
+            </button>
+        </form>
+    </main>
+</body>
+</html>

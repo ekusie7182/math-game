@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>暗算ゲーム</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+    <main class="container">
+        <h1>暗算ゲーム</h1>
+
+        <div class="game-status">
+            <span>
+                第 {{ question_number }} 問 ／
+                全 {{ total_questions }} 問
+            </span>
+
+            <span>
+                現在 {{ score }} 問正解
+            </span>
+        </div>
+
+        <div class="progress-bar">
+            <div
+                class="progress-value"
+                style="width:
+                    {{ question_number / total_questions * 100 }}%;"
+            ></div>
+        </div>
+
+        {% if message %}
+            <div class="message {{ message_class }}">
+                {{ message }}
+            </div>
+        {% endif %}
+
+        <div class="level {{ problem.level_class }}">
+            難易度：{{ problem.level }}
+        </div>
+
+        <p class="instruction">
+            次の計算に答えてください。
+        </p>
+
+        <div class="question">
+            {{ problem.number1 }}
+            {{ problem.operator }}
+            {{ problem.number2 }}
+            ＝ ？
+        </div>
+
+        <form method="post">
+            <div class="answer-area">
+                <label for="answer">答え</label>
+
+                <input
+                    type="number"
+                    id="answer"
+                    name="answer"
+                    required
+                    autofocus
+                    autocomplete="off"
+                >
+            </div>
+
+            <button type="submit" class="main-button">
+                回答する
+            </button>
+        </form>
+    </main>
+</body>
+</html>
