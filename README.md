@@ -54,7 +54,7 @@ Dockerコンテナ上で動作し、ブラウザから利用できます。
 ### 1. リポジトリを取得
 
 ```bash
-git clone （GitHubのURL）
+git clone https://github.com/ekusie7182/math-game.git
 cd math_game
 ```
 
